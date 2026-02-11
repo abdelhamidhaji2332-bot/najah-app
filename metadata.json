@@ -1,0 +1,8 @@
+{
+  "name": "NAJAH – BAC Success Platform",
+  "description": "Comprehensive study platform for Moroccan BAC students. Lessons, summaries, national exams, focus timer, and AI tutoring for maximum success.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
