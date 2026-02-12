@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NAJAH – BAC Success</title>
+  <title>NAJAH – BAC Success Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
       -webkit-font-smoothing: antialiased;
       scroll-behavior: smooth;
       background-color: #000000;
+      color: #f8fafc;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 4px;
@@ -32,19 +33,24 @@
     }
     
     .glass-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(24px) saturate(200%);
-      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
     .premium-shadow {
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9);
     }
 
     .text-glow {
-      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .neon-border {
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
     }
 
     ::selection {
@@ -56,13 +62,12 @@
       display: none;
     }
 
-    /* Animation for the background glow */
     @keyframes pulse-glow {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.1); }
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.1); }
     }
     .bg-glow {
-      animation: pulse-glow 10s infinite ease-in-out;
+      animation: pulse-glow 12s infinite ease-in-out;
     }
   </style>
 <script type="importmap">
@@ -79,7 +84,7 @@
 }
 </script>
 </head>
-<body class="bg-black text-slate-100 selection:bg-blue-600 selection:text-white">
+<body class="bg-black">
   <div id="root"></div>
 </body>
 </html>
