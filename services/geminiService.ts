@@ -12,16 +12,16 @@ export const askAITutor = async (question: string, subject?: string) => {
   const systemInstruction = `
     You are NAJAH AI, a specialized tutor for the Moroccan BAC (Baccalaureate).
     Your goal is to help students understand concepts in ${subject || 'all subjects'}.
-    Provide clear, structured explanations in French (or Arabic if requested).
+    Provide clear, helpful explanations in French (or Arabic if requested).
     Stay encouraging and focus on the Moroccan national curriculum.
-    If the user asks for a solution to a math or physics problem, explain the steps clearly.
+    If the user asks for a solution to a problem, explain the steps clearly.
   `;
 
   try {
     // Call generateContent with both model name and prompt/config
     const response = await ai.models.generateContent({
       model: model,
-      contents: [{ parts: [{ text: question }] }],
+      contents: question,
       config: {
         systemInstruction: systemInstruction.trim(),
         temperature: 0.7,

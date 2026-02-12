@@ -1,18 +1,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import Exams from './pages/Exams';
-import Pomodoro from './pages/Pomodoro';
-import Planner from './pages/Planner';
-import Admin from './pages/Admin';
-import AITutor from './pages/AITutor';
-import Profile from './pages/Profile';
-import About from './pages/About';
-import Subjects from './pages/Subjects';
-import SubjectDetail from './pages/SubjectDetail';
-import Onboarding from './components/Onboarding';
+import Layout from './components/Layout.tsx';
+import Dashboard from './pages/Dashboard.tsx';
+import Exams from './pages/Exams.tsx';
+import Pomodoro from './pages/Pomodoro.tsx';
+import Planner from './pages/Planner.tsx';
+import Admin from './pages/Admin.tsx';
+import AITutor from './pages/AITutor.tsx';
+import Profile from './pages/Profile.tsx';
+import About from './pages/About.tsx';
+import Subjects from './pages/Subjects.tsx';
+import SubjectDetail from './pages/SubjectDetail.tsx';
+import Onboarding from './components/Onboarding.tsx';
 
 const App: React.FC = () => {
   const [isOnboarded, setIsOnboarded] = useState<boolean>(() => {

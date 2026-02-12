@@ -6,7 +6,6 @@ import {
   Plus, 
   Trash2, 
   Edit, 
-  Power, 
   Lock, 
   MessageSquare, 
   Copy, 
@@ -19,12 +18,11 @@ import {
   Save,
   FileText,
   Filter,
-  MoreVertical,
-  Calendar
+  Calendar,
+  PlayCircle // Import from lucide-react to avoid definition order issues
 } from 'lucide-react';
-import { Filiere, Subject } from '../types';
-// Fix: Change SUBJECTS to SUBJECTS_MAP
-import { SUBJECTS_MAP } from '../constants';
+import { Filiere, Subject } from '../types.ts';
+import { SUBJECTS_MAP } from '../constants.tsx';
 
 interface DriveResource {
   id: string;
@@ -49,7 +47,6 @@ const Admin: React.FC = () => {
     return saved ? JSON.parse(saved) : [
       { id: '1', title: 'Fiche 01: Étude des fonctions', type: 'Course', status: 'Active', link: 'https://drive.google.com/file/d/1', provider: 'Prof Fayssal', subjectId: 'math', filiere: Filiere.PC },
       { id: '2', title: 'Correction National 2024 PC', type: 'Exam', status: 'Active', link: 'https://drive.google.com/file/d/2', provider: 'Moutamadris', subjectId: 'pc', filiere: Filiere.PC, year: '2024' },
-      // Fix: Change Filiere.SM to Filiere.SM_A
       { id: '3', title: 'Résumé Ondes Mécaniques', type: 'Exercise', status: 'Inactive', link: 'https://drive.google.com/file/d/3', provider: 'AlloSchool', subjectId: 'pc', filiere: Filiere.SM_A },
     ];
   });
@@ -219,7 +216,6 @@ const Admin: React.FC = () => {
                     onChange={(e) => setFormResource({...formResource, subjectId: e.target.value})}
                     className="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-6 py-4 outline-none font-bold"
                   >
-                    {/* Unique subjects from all filieres. Fix: Cast Object.values to Subject[][] for correct flat() inference */}
                     {Array.from(new Set((Object.values(SUBJECTS_MAP) as Subject[][]).flat().map(s => s.id))).map((id) => (
                       <option key={id} value={id}>{id.toUpperCase()}</option>
                     ))}
@@ -435,7 +431,7 @@ const Admin: React.FC = () => {
                   <tr>
                     <td colSpan={4} className="px-10 py-32 text-center">
                       <div className="max-w-xs mx-auto space-y-6">
-                        <div className="w-20 h-20 bg-slate-50 dark:bg-slate-900 rounded-[2rem] flex items-center justify-center mx-auto">
+                        <div className="w-20 h-20 bg-slate-50 dark:bg-slate-900 rounded-[2rem] flex items-center justify-center mx-auto shadow-inner">
                            <Search className="w-10 h-10 text-slate-200" />
                         </div>
                         <h4 className="text-slate-400 font-bold text-xl italic tracking-tight">Aucun document trouvé pour ces filtres.</h4>
@@ -453,7 +449,7 @@ const Admin: React.FC = () => {
           <div className="bg-white dark:bg-slate-800 p-12 rounded-[3.5rem] border border-slate-200 dark:border-slate-700 shadow-2xl flex flex-col gap-8">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                 <div className="w-12 h-12 bg-indigo-500 text-white rounded-2xl flex items-center justify-center">
+                 <div className="w-12 h-12 bg-indigo-500 text-white rounded-2xl flex items-center justify-center shadow-lg">
                     <MessageSquare className="w-6 h-6" />
                  </div>
                  <h3 className="text-2xl font-black tracking-tight">Template de Pitch</h3>
@@ -476,27 +472,27 @@ I wanted to ask if it would be possible to use some of your lesson and exercise 
           </div>
 
           <div className="space-y-8">
-            <div className="bg-indigo-600 p-12 rounded-[3.5rem] text-white shadow-2xl shadow-indigo-500/30 flex flex-col justify-between h-full relative overflow-hidden group">
+            <div className="bg-indigo-600 p-12 rounded-[3.5rem] text-white shadow-2xl shadow-indigo-500/30 flex flex-col justify-between h-full relative overflow-hidden group border border-white/5">
                <div className="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
                <div className="relative z-10">
                   <Handshake className="w-16 h-16 mb-8 text-indigo-200" />
                   <h3 className="text-3xl font-black mb-6 tracking-tight leading-tight">Pourquoi collaborer ?</h3>
                   <ul className="space-y-6">
                     <li className="flex gap-4 items-start">
-                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1"><CheckCircle2 className="w-4 h-4 text-white" /></div>
+                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1 shadow-inner"><CheckCircle2 className="w-4 h-4 text-white" /></div>
                       <p className="font-bold text-indigo-50 text-lg">Impact social gratuit pour +50,000 bacheliers.</p>
                     </li>
                     <li className="flex gap-4 items-start">
-                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1"><CheckCircle2 className="w-4 h-4 text-white" /></div>
+                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1 shadow-inner"><CheckCircle2 className="w-4 h-4 text-white" /></div>
                       <p className="font-bold text-indigo-50 text-lg">Protection IP via visionneuse in-app sécurisée.</p>
                     </li>
                     <li className="flex gap-4 items-start">
-                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1"><CheckCircle2 className="w-4 h-4 text-white" /></div>
+                      <div className="bg-white/20 p-1 rounded-full flex-shrink-0 mt-1 shadow-inner"><CheckCircle2 className="w-4 h-4 text-white" /></div>
                       <p className="font-bold text-indigo-50 text-lg">Exposition maximale de leur marque éducative.</p>
                     </li>
                   </ul>
                </div>
-               <div className="mt-12 bg-white/10 p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-md">
+               <div className="mt-12 bg-white/10 p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-md shadow-inner">
                  <p className="text-[10px] font-black uppercase tracking-widest text-indigo-200 mb-2">Network Expansion</p>
                  <div className="flex justify-between items-center">
                    <span className="font-black text-3xl tracking-tighter">2/10 Partenaires</span>
@@ -512,7 +508,7 @@ I wanted to ask if it would be possible to use some of your lesson and exercise 
       <div className="p-12 bg-slate-900 rounded-[3.5rem] text-white border border-white/5 shadow-2xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full -mr-48 -mt-48 blur-[100px] group-hover:bg-blue-600/20 transition-all duration-700" />
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-           <div className="w-24 h-24 bg-white/5 rounded-[2rem] flex items-center justify-center border border-white/10 backdrop-blur-md flex-shrink-0">
+           <div className="w-24 h-24 bg-white/5 rounded-[2rem] flex items-center justify-center border border-white/10 backdrop-blur-md flex-shrink-0 shadow-inner">
               <Calendar className="w-10 h-10 text-blue-400" />
            </div>
            <div>
@@ -528,12 +524,5 @@ I wanted to ask if it would be possible to use some of your lesson and exercise 
     </div>
   );
 };
-
-// SVG Helpers
-const PlayCircle = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
-  </svg>
-);
 
 export default Admin;

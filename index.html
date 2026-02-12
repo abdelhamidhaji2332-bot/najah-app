@@ -10,31 +10,59 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-glow: conic-gradient(from 180deg at 50% 50%, #1677ff 0deg, #73b9ff 55deg, #1677ff 120deg, #73b9ff 160deg, transparent 360deg);
+    }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+      background-color: #000000;
     }
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
       background: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 20px;
+      background: #1e293b;
+      border-radius: 10px;
     }
-    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #334155;
-    }
+    
     .glass-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
-    .dark .glass-card {
-      background: rgba(30, 41, 59, 0.7);
+
+    .premium-shadow {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    ::selection {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Animation for the background glow */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.1); }
+    }
+    .bg-glow {
+      animation: pulse-glow 10s infinite ease-in-out;
     }
   </style>
 <script type="importmap">
@@ -45,12 +73,13 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
     "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0"
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "@/": "./"
   }
 }
 </script>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200">
+<body class="bg-black text-slate-100 selection:bg-blue-600 selection:text-white">
   <div id="root"></div>
 </body>
 </html>
