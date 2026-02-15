@@ -75,73 +75,78 @@ const Pomodoro: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-8 animate-in zoom-in duration-500 py-12">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Timer Pomodoro</h1>
-        <p className="text-slate-500 dark:text-slate-400">Reste concentré sur tes révisions, une session à la fois.</p>
+    <div className="flex flex-col items-center justify-center space-y-12 animate-in zoom-in duration-700 py-12">
+      <div className="text-center space-y-3">
+        <h1 className="text-4xl font-black text-white tracking-tight uppercase">Focus <span className="text-blue-600">Timer</span></h1>
+        <p className="text-slate-500 font-medium italic">"Une session focalisée vaut une heure de distraction."</p>
       </div>
 
       <div className={`
-        relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex items-center justify-center border-8 transition-colors duration-500
-        ${mode === 'work' ? 'border-blue-500 shadow-lg shadow-blue-500/20' : 'border-emerald-500 shadow-lg shadow-emerald-500/20'}
-        bg-white dark:bg-slate-800
+        relative w-80 h-80 sm:w-96 sm:h-96 rounded-full flex items-center justify-center border-4 transition-all duration-700 glass-card
+        ${mode === 'work' ? 'border-blue-600/30 shadow-[0_0_50px_rgba(37,99,235,0.15)]' : 'border-emerald-600/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]'}
       `}>
-        <div className="text-center">
-          <p className="text-6xl sm:text-7xl font-mono font-bold text-slate-900 dark:text-white">
+        {/* Animated Ring */}
+        <div className={`absolute inset-0 rounded-full border-t-4 animate-[spin_10s_linear_infinite] ${mode === 'work' ? 'border-blue-500' : 'border-emerald-500'}`} />
+        
+        <div className="text-center relative z-10">
+          <p className="text-7xl sm:text-8xl font-black font-mono text-white tracking-tighter text-glow">
             {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
           </p>
-          <p className={`text-sm font-bold uppercase tracking-widest mt-2 ${mode === 'work' ? 'text-blue-500' : 'text-emerald-500'}`}>
-            {mode === 'work' ? 'Concentration' : 'Pause'}
-          </p>
+          <div className="mt-4 flex flex-col items-center">
+             <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${mode === 'work' ? 'bg-blue-600/10 text-blue-400' : 'bg-emerald-600/10 text-emerald-400'}`}>
+                {mode === 'work' ? 'Deep Work' : 'Break Time'}
+             </div>
+          </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 bg-slate-900/50 p-2 rounded-[2.5rem] border border-white/5">
         <button 
           onClick={setWorkMode}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'work' ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/40' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
+          className={`flex items-center gap-3 px-8 py-3.5 rounded-3xl font-black uppercase text-[10px] tracking-widest transition-all ${mode === 'work' ? 'bg-blue-600 text-white shadow-xl' : 'text-slate-500 hover:text-white'}`}
         >
           <Brain className="w-4 h-4" /> Focus
         </button>
         <button 
           onClick={setBreakMode}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'break' ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
+          className={`flex items-center gap-3 px-8 py-3.5 rounded-3xl font-black uppercase text-[10px] tracking-widest transition-all ${mode === 'break' ? 'bg-emerald-600 text-white shadow-xl' : 'text-slate-500 hover:text-white'}`}
         >
           <Coffee className="w-4 h-4" /> Pause
         </button>
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-8">
         <button 
           onClick={resetTimer}
-          className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+          className="p-5 rounded-[2rem] bg-slate-900 border border-white/5 text-slate-500 hover:text-white transition-all active:scale-90"
         >
-          <RotateCcw className="w-6 h-6" />
+          <RotateCcw className="w-7 h-7" />
         </button>
         <button 
           onClick={toggleTimer}
           className={`
-            w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl transition-all hover:scale-105 active:scale-95
-            ${isActive ? 'bg-slate-900 dark:bg-slate-700' : 'bg-blue-600'}
+            w-24 h-24 rounded-[2.5rem] flex items-center justify-center text-white shadow-2xl transition-all hover:scale-105 active:scale-95 border border-white/10
+            ${isActive ? 'bg-slate-800' : 'bg-blue-600 shadow-[0_0_30px_rgba(37,99,235,0.4)]'}
           `}
         >
-          {isActive ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
+          {isActive ? <Pause className="w-10 h-10" /> : <Play className="w-10 h-10 ml-1.5" />}
         </button>
-        <div className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-          <p className="text-xs text-slate-400 font-bold uppercase mb-1">Sessions</p>
-          <p className="text-xl font-bold text-slate-900 dark:text-white text-center">{totalSessions}</p>
+        <div className="p-5 rounded-[2rem] bg-slate-900 border border-white/5 text-center min-w-[100px]">
+          <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Cycles</p>
+          <p className="text-2xl font-black text-white">{totalSessions}</p>
         </div>
       </div>
 
-      <div className="max-w-md w-full bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-        <div className="flex gap-4">
-          <div className="w-10 h-10 bg-blue-100 dark:bg-blue-800 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Bell className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+      <div className="max-w-md w-full glass-card p-8 rounded-[2.5rem] relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/5 rounded-full -mr-12 -mt-12 blur-2xl" />
+        <div className="flex gap-6 items-start relative z-10">
+          <div className="w-12 h-12 bg-blue-600/10 rounded-2xl flex items-center justify-center flex-shrink-0 border border-blue-600/20 shadow-inner">
+            <Bell className="w-6 h-6 text-blue-500" />
           </div>
           <div>
-            <h4 className="font-bold text-blue-900 dark:text-blue-200">Conseil NAJAH</h4>
-            <p className="text-sm text-blue-700/80 dark:text-blue-300/70">
-              La méthode Pomodoro aide à lutter contre la procrastination en découpant le travail en blocs gérables de 25 minutes.
+            <h4 className="font-black uppercase text-xs tracking-widest text-blue-400 mb-2">Conseil Najah</h4>
+            <p className="text-sm text-slate-400 font-medium leading-relaxed italic">
+              "L'important n'est pas de travailler plus, mais de travailler mieux. La technique Pomodoro protège ta clarté mentale."
             </p>
           </div>
         </div>

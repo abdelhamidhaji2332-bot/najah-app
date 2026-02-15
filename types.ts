@@ -19,18 +19,20 @@ export enum BacLevel {
 
 export type Language = 'FR' | 'AR' | 'EN';
 
+export type ResourceType = 'course' | 'exercise' | 'video' | 'quiz';
+
 export interface Subject {
   id: string;
   name: string;
   icon: string;
   color: string;
-  lessonCount?: number;
 }
 
 export interface LessonResource {
   id: string;
+  chapterId: string;
   title: string;
-  type: 'course' | 'exercise' | 'video' | 'quiz';
+  type: ResourceType;
   url: string;
   provider?: string;
   status: 'available' | 'locked';
@@ -38,11 +40,11 @@ export interface LessonResource {
 
 export interface Chapter {
   id: string;
+  subjectId: string;
   title: string;
   description: string;
   difficulty: 'Facile' | 'Moyen' | 'Difficile';
   examWeight: number; // 1 to 5
-  resources: LessonResource[];
   keyConcepts: string[];
   outline: string[];
 }
